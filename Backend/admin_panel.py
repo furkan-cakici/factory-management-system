@@ -4,10 +4,11 @@ from psycopg2.extras import RealDictCursor
 import pandas as pd
 from datetime import datetime
 
-# --- AYARLAR ---
+
 st.set_page_config(page_title="Fabrika Yönetim Paneli", layout="wide", page_icon="🏭")
 
-DB_URL = "postgresql://postgres.qpvovfxrzktgofdbazld:12052014Kepen.@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+import os
+DB_URL = os.environ.get("DB_URL", "postgresql://user:password@localhost:5432/postgres")
 
 def get_db_connection():
     conn = psycopg2.connect(DB_URL, cursor_factory=RealDictCursor)
